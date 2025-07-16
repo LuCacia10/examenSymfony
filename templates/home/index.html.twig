@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur le système de gestion du club !</h1>
+    <p>
+        <a href="{{ path('member_index') }}">Voir les membres</a> |
+        <a href="{{ path('cotisation_index') }}">Voir les cotisations</a> |
+        <a href="{{ path('cotisation_rappels') }}">Voir les rappels</a>
+    </p>
+{% endblock %}

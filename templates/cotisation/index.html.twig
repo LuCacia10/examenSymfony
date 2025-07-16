@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cotisation index{% endblock %}
+
+{% block body %}
+    <h1>Cotisation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>IsPaid</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cotisation in cotisations %}
+            <tr>
+                <td>{{ cotisation.id }}</td>
+                <td>{{ cotisation.amount }}</td>
+                <td>{{ cotisation.date ? cotisation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ cotisation.isPaid ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_cotisation_show', {'id': cotisation.id}) }}">show</a>
+                    <a href="{{ path('app_cotisation_edit', {'id': cotisation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cotisation_new') }}">Create new</a>
+{% endblock %}

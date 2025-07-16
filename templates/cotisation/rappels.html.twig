@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rappels des cotisations{% endblock %}
+
+{% block body %}
+    <h1>Rappels des cotisations impayées</h1>
+
+    {% if cotisations is not empty %}
+        <ul>
+            {% for cotisation in cotisations %}
+                <li>
+                    <strong>Membre :</strong> {{ cotisation.membre.name }}<br>
+                    <strong>Email :</strong> {{ cotisation.membre.email }}<br>
+                    <strong>Date :</strong> {{ cotisation.date|date('Y-m-d') }}<br>
+                    <strong>Montant :</strong> {{ cotisation.amount }} €<br>
+                    <strong>Statut :</strong>
+                    {% if cotisation.isPaid %}
+                        ✅ Payé
+                    {% else %}
+                        ❌ Non payé
+                    {% endif %}
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Toutes les cotisations sont payées. Aucun rappel à envoyer 🎉.</p>
+    {% endif %}
+
+    <a href="{{ path('cotisation_index') }}" class="btn btn-primary mt-3">Retour à la liste des cotisations</a>
+{% endblock %}

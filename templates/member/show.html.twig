@@ -1,0 +1,11 @@
+<h2>Cotisations</h2>
+<ul>
+    {% for cotisation in member.cotisations %}
+        <li>
+            {{ cotisation.date|date('Y-m-d') }} — {{ cotisation.amount }} € — 
+            {% if cotisation.isPaid %} Payé{% else %} Non payé{% endif %}
+        </li>
+    {% else %}
+        <li>Aucune cotisation enregistrée.</li>
+    {% endfor %}
+</ul>
